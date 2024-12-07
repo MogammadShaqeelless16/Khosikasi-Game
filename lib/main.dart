@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/main_menu_screen.dart';
 import 'screens/avatar_creation_screen.dart';
+import 'screens/settings_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/lessons_screen.dart'; 
 
@@ -29,6 +30,7 @@ class KhosikasiApp extends StatelessWidget {
         '/avatarCreation': (context) => const AvatarCreationScreen(),
         '/tasks': (context) => const TasksScreen(),
         '/lessons': (context) => const LessonsScreen(),
+        '/settings': (context) => const SettingsScreen(),
       },
     );
   }

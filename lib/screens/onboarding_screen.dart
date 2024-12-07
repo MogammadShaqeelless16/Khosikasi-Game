@@ -79,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             _currentIndex == slides.length - 1
                 ? TextButton(
                     onPressed: () {
-                      _playMenuSound(); // Play sound for menu
+                      _playMenuSound(); // Play sound for menu transition
                       Navigator.pushReplacementNamed(context, '/mainMenu');
                     },
                     child: const Text(

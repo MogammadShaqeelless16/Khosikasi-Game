@@ -7,43 +7,107 @@ class MainMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Main Menu'),
-        backgroundColor: Colors.brown[800],
+        title: const Text(
+          'Main Menu',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 28,
+            letterSpacing: 1.5,
+          ),
+        ),
+        backgroundColor: Colors.deepPurple[900],
+        elevation: 10,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ListTile(
-              title: const Text(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue[900]!, Colors.deepPurple[700]!],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildMenuItem(
+                context,
                 'Create Avatar',
-                style: TextStyle(fontSize: 24),
+                Icons.person,
+                Colors.orange[600]!,
+                '/avatarCreation',
               ),
-              leading: Icon(Icons.person, color: Colors.orange[600]),
-              onTap: () {
-                Navigator.pushNamed(context, '/avatarCreation');
-              },
-            ),
-            ListTile(
-              title: const Text(
+              _buildMenuItem(
+                context,
                 'Daily Tasks',
-                style: TextStyle(fontSize: 24),
+                Icons.check_circle,
+                Colors.green[600]!,
+                '/tasks',
               ),
-              leading: Icon(Icons.check_circle, color: Colors.orange[600]),
-              onTap: () {
-                Navigator.pushNamed(context, '/tasks');
-              },
-            ),
-            ListTile(
-              title: const Text(
+              _buildMenuItem(
+                context,
                 'Lessons',
-                style: TextStyle(fontSize: 24),
+                Icons.school,
+                Colors.blue[600]!,
+                '/lessons',
               ),
-              leading: Icon(Icons.school, color: Colors.orange[600]),
-              onTap: () {
-                Navigator.pushNamed(context, '/lessons');
-              },
+              const SizedBox(height: 20), // Space between menu items
+              _buildMenuItem(
+                context,
+                'Settings',
+                Icons.settings,
+                Colors.pink[600]!,
+                '/settings',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(
+    BuildContext context,
+    String title,
+    IconData icon,
+    Color iconColor,
+    String route,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: iconColor,
+            ),
+            const SizedBox(width: 20),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 26,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+              ),
             ),
           ],
         ),
